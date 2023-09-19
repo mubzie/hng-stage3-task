@@ -1,0 +1,38 @@
+* {
+  box-sizing: border-box;
+}
+
+.cardWrapper {
+  margin: 96px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 24px;
+}
+
+.parentContainer {
+  display: flex;
+}
+
+.cardContainer {
+  width: 230px;
+  /* height: 250px; */
+  height: max-content;
+  min-height: 221px;
+
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.card {
+}
+
+img.gallery {
+  background-size: cover;
+  width: 100%;
+  min-height: 150px;
+
+  border-radius: 6px;
+}
