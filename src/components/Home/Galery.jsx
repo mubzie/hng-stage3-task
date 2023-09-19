@@ -44,6 +44,12 @@ const Gallery = () => {
 
   return (
     <>
+      <div className={styles.searchContainer}>
+        <div className={styles.search}>
+          <input type="text" placeholder="search a country"></input>
+          <button className={styles.searchBtn}>search</button>
+        </div>
+      </div>
       <div className={styles.cardWrapper}>
         {gallery.map((item) => {
           return (
