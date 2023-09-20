@@ -1,5 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { DndContext, closestCenter } from "@dnd-kit/core";
+import { arrayMove, SortableContext, rectSortingStrategy } from "@dnd-kit/sortable";
+
 import styles from "./Galery.module.css";
 
 const Gallery = () => {
@@ -7,11 +10,20 @@ const Gallery = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
+  const handleOndragEnd = (result) => {
+    const items = Array.from(gallery);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+
+    setGallery(items);
+    console.log(result);
+  };
+
   useEffect(() => {
     const countryCount = [];
 
     const generateRandom = () => {
-      for (let i = 0; i < 15; i++) {
+      for (let i = 0; i < 8; i++) {
         countryCount.push(i);
       }
     };
@@ -50,6 +62,7 @@ const Gallery = () => {
           <button className={styles.searchBtn}>search</button>
         </div>
       </div>
+
       <div className={styles.cardWrapper}>
         {gallery.map((item) => {
           return (
