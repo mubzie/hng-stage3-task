@@ -44,9 +44,11 @@ input::placeholder {
 }
 
 .cardWrapper {
+  display: flex;
+  flex-wrap: wrap;
   margin: 48px 96px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  /* display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); */
   gap: 24px;
 }
 

@@ -1,22 +1,75 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { useState, useEffect } from "react";
 import { DndContext, closestCenter } from "@dnd-kit/core";
-import { arrayMove, SortableContext, rectSortingStrategy } from "@dnd-kit/sortable";
-
+import {
+  arrayMove,
+  SortableContext,
+  rectSortingStrategy,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+import { Sortable } from "./sortableItems";
 import styles from "./Galery.module.css";
 
+// const SortableGallery = ({ gallery }) => {
+//   const { attributes, listeners, setNodeRef, transform, transition } =
+//     useSortable({ id: gallery.id });
+
+//   const style = {
+//     transition,
+//     transform: CSS.Transform.toString(transform),
+//   };
+
+//   return (
+//     <div
+//       className={styles.parentContainer}
+//       ref={setNodeRef}
+//       {...attributes}
+//       {...listeners}
+//       style={style}
+//       key={gallery.id}
+//     >
+//       <div className={styles.cardContainer}>
+//         <div className={styles.card}>
+//           <img
+//             className={styles.gallery}
+//             style={{ backgroundImage: `url(${gallery.image})` }}
+//           ></img>
+//           <div className={styles.galleryInfo}>
+//             <div className={styles.name}>{gallery.name}</div>
+//             <div className={styles.tag}>{gallery.tag}</div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
 const Gallery = () => {
-  const [gallery, setGallery] = useState([]);
+  const [gallerys, setGallerys] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  const handleOndragEnd = (result) => {
-    const items = Array.from(gallery);
-    const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem);
+  const handleDragEnd = (e) => {
+    const { active, over } = e;
+    console.log("active:" + active.id);
+    console.log("over:" + over.id);
 
-    setGallery(items);
-    console.log(result);
+    if (active.id !== over.id) {
+      setGallerys((gallerys) => {
+        const activeIndex = gallerys.findIndex(
+          (gallery) => gallery.id === active.id
+        );
+        const overIndex = gallerys.findIndex(
+          (gallery) => gallery.id === over.id
+        );
+        console.log(arrayMove(gallerys, activeIndex, overIndex));
+
+        return arrayMove(gallerys, activeIndex, overIndex);
+      });
+    }
   };
 
   useEffect(() => {
@@ -48,7 +101,7 @@ const Gallery = () => {
         ];
       });
 
-      setGallery([...resultArray]);
+      setGallerys([...resultArray]);
     };
 
     fetchImages();
@@ -63,26 +116,24 @@ const Gallery = () => {
         </div>
       </div>
 
-      <div className={styles.cardWrapper}>
-        {gallery.map((item) => {
-          return (
-            <div key={item.id} className={styles.parentContainer}>
-              <div className={styles.cardContainer}>
-                <div className={styles.card}>
-                  <img
-                    className={styles.gallery}
-                    style={{ backgroundImage: `url(${item.image})` }}
-                  ></img>
-                  <div className={styles.galleryInfo}>
-                    <div className={styles.name}>{item.name}</div>
-                    <div className={styles.tag}>{item.tag}</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+      <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+        <div className={styles.cardWrapper}>
+          <SortableContext items={gallerys} strategy={rectSortingStrategy}>
+            {gallerys.map((gallery) => (
+              // console.log(gallery.id)
+              <Sortable key={gallery.id} props={gallery} />
+            ))}
+            {/* {gallerys.map((gallery) => {
+              return (
+                <SortableGallery
+                  key={gallery.id}
+                  gallery={gallerys}
+                ></SortableGallery>
+              );
+            })} */}
+          </SortableContext>
+        </div>
+      </DndContext>
     </>
   );
 };
