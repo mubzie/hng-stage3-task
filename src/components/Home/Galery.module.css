@@ -16,11 +16,14 @@
 }
 
 button.searchBtn {
+  font-size: 16px;
+  font-weight: 500;
   background-color: #0e73f5;
   color: #fff;
   border: none;
   border-radius: 6px;
   padding: 8px 24px;
+  cursor: pointer;
 }
 
 input {
@@ -73,6 +76,26 @@ img.gallery {
   min-height: 150px;
 
   border-radius: 6px;
+}
+
+.galleryInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.name {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.tag {
+  max-width: fit-content;
+  padding: 4px 8px;
+  background-color: beige;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 /* media query */

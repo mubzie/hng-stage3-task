@@ -60,9 +60,9 @@ const Gallery = () => {
                     className={styles.gallery}
                     style={{ backgroundImage: `url(${item.image})` }}
                   ></img>
-                  <div className="galleryInfo">
-                    <div className="name">{item.name}</div>
-                    <div className="tag">{item.tag}</div>
+                  <div className={styles.galleryInfo}>
+                    <div className={styles.name}>{item.name}</div>
+                    <div className={styles.tag}>{item.tag}</div>
                   </div>
                 </div>
               </div>
