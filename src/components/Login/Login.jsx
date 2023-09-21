@@ -1,31 +1,31 @@
 import React from "react";
 import { useState } from "react";
-import { auth } from "../../firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+// import { auth } from "../../firebase";
+// import { signInWithEmailAndPassword } from "firebase/auth";
 import { useAuth } from "../AuthContext";
+import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
 
 const Login = () => {
   const { logIn } = useAuth;
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("user@example.com");
+  const [password, setPassword] = useState("1Password");
 
-  const handleLogin = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    console.log("clicked");
+
     try {
-      await logIn(email, password); // Attempt to log in
+      const user = await logIn(email, password); // Attempt to log in
+      console.log("inside try block");
+      console.log(user);
+
+      // navigate("/gallery");
     } catch (error) {
-      console.error(error.message);
+      console.log("Error caught:", error);
     }
   };
-
-  // const handleLogin = async (e) => {
-  //   e.preventDefault();
-  //   signInWithEmailAndPassword(auth, email, password)
-  //     .then((credential) => console.log(credential))
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
 
   return (
     <>
@@ -52,11 +52,7 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             ></input>
           </div>
-          <button
-            type="submit"
-            className={styles.formBtn}
-            // onClick={handleLogin}
-          >
+          <button type="submit" className={styles.formBtn}>
             Log In
           </button>
         </form>

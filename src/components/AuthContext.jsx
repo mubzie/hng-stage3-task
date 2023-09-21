@@ -21,8 +21,8 @@ export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const logIn = (email, password) => {
-    return signInWithEmailAndPassword(auth, email, password);
+  const logIn = async (email, password) => {
+    return await signInWithEmailAndPassword(auth, email, password);
   };
 
   const logOut = () => {
@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
       setLoading(false);
     });
