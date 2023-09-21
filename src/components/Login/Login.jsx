@@ -2,30 +2,30 @@ import React from "react";
 import { useState } from "react";
 import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { useAuth } from "../AuthContext";
 import styles from "./Login.module.css";
 
 const Login = () => {
+  const { logIn } = useAuth;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    // console.log("clicked");
-    signInWithEmailAndPassword(auth, email, password)
-      .then((credential) => console.log(credential))
-      .catch((error) => {
-        console.log(error);
-      });
-    // try {
-    //   const userCredential = await app
-    //     .auth()
-    //     .signInWithEmailAndPassword(email, password);
-    //   // User has been signed in successfully
-    //   console.log(userCredential);
-    // } catch (error) {
-    //   console.error(error.message);
-    // }
+  const handleLogin = async () => {
+    try {
+      await logIn(email, password); // Attempt to log in
+    } catch (error) {
+      console.error(error.message);
+    }
   };
+
+  // const handleLogin = async (e) => {
+  //   e.preventDefault();
+  //   signInWithEmailAndPassword(auth, email, password)
+  //     .then((credential) => console.log(credential))
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
   return (
     <>
