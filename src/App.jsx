@@ -7,8 +7,8 @@ import "./App.module.css";
 function App() {
   return (
     <>
-      {/* <Login /> */}
-      <Gallery />
+      <Login />
+      {/* <Gallery /> */}
     </>
   );
 }
