@@ -10,10 +10,10 @@ const Login = () => {
 
   const [email, setEmail] = useState("user@example.com");
   const [password, setPassword] = useState("1Password");
+  const [error, setError] = useState(null);
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("clicked");
 
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
@@ -21,6 +21,7 @@ const Login = () => {
 
       navigate("/gallery");
     } catch (error) {
+      setError(error.message);
       console.log(error);
     }
   };
@@ -54,6 +55,7 @@ const Login = () => {
             Log In
           </button>
         </form>
+        {error && <p className={styles.error}>{error}</p>}
       </div>
     </>
   );

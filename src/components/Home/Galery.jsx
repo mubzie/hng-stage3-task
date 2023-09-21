@@ -17,8 +17,6 @@ const Gallery = () => {
 
   const handleDragEnd = (e) => {
     const { active, over } = e;
-    console.log("active:" + active.id);
-    console.log("over:" + over.id);
 
     if (active.id !== over.id) {
       setGallerys((gallerys) => {
