@@ -39,6 +39,8 @@ const Login = () => {
             <input
               className={styles.login}
               type="text"
+              id="email"
+              name="email"
               placeholder="Email address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -46,6 +48,8 @@ const Login = () => {
             <input
               className={styles.login}
               type="password"
+              id="password"
+              name="password"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
