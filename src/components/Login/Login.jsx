@@ -8,8 +8,8 @@ const Login = () => {
   const auth = getAuth();
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("user@example.com");
-  const [password, setPassword] = useState("1Password");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
   const handleLogin = async (e) => {
