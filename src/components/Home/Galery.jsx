@@ -12,8 +12,10 @@ import styles from "./Galery.module.css";
 
 const Gallery = () => {
   const [gallerys, setGallerys] = useState([]);
+  const [originalGallerys, setOriginalGallerys] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleDragEnd = (e) => {
     const { active, over } = e;
@@ -31,6 +33,25 @@ const Gallery = () => {
         return arrayMove(gallerys, activeIndex, overIndex);
       });
     }
+  };
+
+  const handleSearchChange = (e) => {
+    const query = e.target.value.toLowerCase();
+    setSearchQuery(query);
+
+    if (query === "") {
+      // If the search field is empty, reset the gallerys state to its initial value
+      setGallerys(originalGallerys);
+      return;
+    }
+
+    // Filter the gallerys array by tag and search query
+    const filteredGallerys = gallerys.filter((gallery) => {
+      const tagMatches = gallery.tag.toLowerCase().includes(query);
+      return tagMatches;
+    });
+
+    setGallerys(filteredGallerys);
   };
 
   useEffect(() => {
@@ -64,6 +85,8 @@ const Gallery = () => {
         });
 
         setGallerys([...resultArray]);
+
+        setOriginalGallerys([...resultArray]);
       } catch (error) {
         setError(error);
       } finally {
@@ -87,7 +110,12 @@ const Gallery = () => {
     <>
       <div className={styles.searchContainer}>
         <div className={styles.search}>
-          <input type="text" placeholder="search a country"></input>
+          <input
+            type="text"
+            placeholder="search country by tag"
+            value={searchQuery}
+            onChange={handleSearchChange}
+          ></input>
           <button className={styles.searchBtn}>search</button>
         </div>
       </div>
