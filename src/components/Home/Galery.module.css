@@ -51,8 +51,28 @@ input::placeholder {
   justify-content: center;
 }
 
-.pContainer {
-  flex-grow: 1;
+.loadingState {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.errorState {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .parentContainer {
@@ -70,9 +90,6 @@ input::placeholder {
   padding: 8px;
   background-color: #fff;
   border-radius: 8px;
-}
-
-.card {
 }
 
 img.gallery {
@@ -98,6 +115,7 @@ img.gallery {
   max-width: fit-content;
   padding: 4px 8px;
   background-color: beige;
+  color: #217101;
   border-radius: 6px;
   font-size: 14px;
   font-weight: 500;

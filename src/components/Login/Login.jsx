@@ -17,7 +17,6 @@ const Login = () => {
 
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
-      console.log("inside try block");
       console.log(user);
 
       navigate("/gallery");

@@ -6,10 +6,7 @@ import {
   arrayMove,
   SortableContext,
   rectSortingStrategy,
-  verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import { useSortable } from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
 import { Sortable } from "./sortableItems";
 import styles from "./Galery.module.css";
 
@@ -50,28 +47,43 @@ const Gallery = () => {
     const fetchImages = async () => {
       let resultArray = [];
 
-      const response = await fetch(`https://restcountries.com/v3.1/all`);
-      const data = await response.json();
+      try {
+        const response = await fetch(`https://restcountries.com/v3.1/all`);
+        const data = await response.json();
 
-      generateRandom();
+        generateRandom();
 
-      countryCount.map((index) => {
-        resultArray = [
-          ...resultArray,
-          {
-            id: index,
-            name: data[index]["name"]["common"],
-            tag: data[index]["continents"][0],
-            image: data[index]["flags"]["png"],
-          },
-        ];
-      });
+        countryCount.map((index) => {
+          resultArray = [
+            ...resultArray,
+            {
+              id: index,
+              name: data[index]["name"]["common"],
+              tag: data[index]["continents"][0],
+              image: data[index]["flags"]["png"],
+            },
+          ];
+        });
 
-      setGallerys([...resultArray]);
+        setGallerys([...resultArray]);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchImages();
   }, []);
+
+  if (error)
+    return (
+      <div className={styles.errorState}>
+        A network error was encountered `{error.message}`
+      </div>
+    );
+
+  if (loading) return <div className={styles.loadingState}>Loading...</div>;
 
   return (
     <>
@@ -86,17 +98,8 @@ const Gallery = () => {
         <div className={styles.cardWrapper}>
           <SortableContext items={gallerys} strategy={rectSortingStrategy}>
             {gallerys.map((gallery) => (
-              // console.log(gallery.id)
               <Sortable key={gallery.id} props={gallery} />
             ))}
-            {/* {gallerys.map((gallery) => {
-              return (
-                <SortableGallery
-                  key={gallery.id}
-                  gallery={gallerys}
-                ></SortableGallery>
-              );
-            })} */}
           </SortableContext>
         </div>
       </DndContext>
