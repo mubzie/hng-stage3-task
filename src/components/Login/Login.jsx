@@ -1,14 +1,13 @@
 import React from "react";
 import { useState } from "react";
-// import { auth } from "../../firebase";
-// import { signInWithEmailAndPassword } from "firebase/auth";
-import { useAuth } from "../AuthContext";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
 
 const Login = () => {
-  const { logIn } = useAuth;
+  const auth = getAuth();
   const navigate = useNavigate();
+
   const [email, setEmail] = useState("user@example.com");
   const [password, setPassword] = useState("1Password");
 
@@ -17,13 +16,13 @@ const Login = () => {
     console.log("clicked");
 
     try {
-      const user = await logIn(email, password); // Attempt to log in
+      const user = await signInWithEmailAndPassword(auth, email, password);
       console.log("inside try block");
       console.log(user);
 
-      // navigate("/gallery");
+      navigate("/gallery");
     } catch (error) {
-      console.log("Error caught:", error);
+      console.log(error);
     }
   };
 
