@@ -5,7 +5,7 @@ import styles from "./Galery.module.css";
 
 export function Sortable({ props }) {
   const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: props.id }); 
+    useSortable({ id: props.id });
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -13,12 +13,19 @@ export function Sortable({ props }) {
   };
 
   return (
-    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
+    <div
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
+      className={style.pContainer}
+    >
       <div
         className={styles.parentContainer}
         {...attributes}
         {...listeners}
         style={style}
+
         // key={props.id}
       >
         <div className={styles.cardContainer}>

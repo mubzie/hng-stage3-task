@@ -13,40 +13,6 @@ import { CSS } from "@dnd-kit/utilities";
 import { Sortable } from "./sortableItems";
 import styles from "./Galery.module.css";
 
-// const SortableGallery = ({ gallery }) => {
-//   const { attributes, listeners, setNodeRef, transform, transition } =
-//     useSortable({ id: gallery.id });
-
-//   const style = {
-//     transition,
-//     transform: CSS.Transform.toString(transform),
-//   };
-
-//   return (
-//     <div
-//       className={styles.parentContainer}
-//       ref={setNodeRef}
-//       {...attributes}
-//       {...listeners}
-//       style={style}
-//       key={gallery.id}
-//     >
-//       <div className={styles.cardContainer}>
-//         <div className={styles.card}>
-//           <img
-//             className={styles.gallery}
-//             style={{ backgroundImage: `url(${gallery.image})` }}
-//           ></img>
-//           <div className={styles.galleryInfo}>
-//             <div className={styles.name}>{gallery.name}</div>
-//             <div className={styles.tag}>{gallery.tag}</div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
 const Gallery = () => {
   const [gallerys, setGallerys] = useState([]);
   const [loading, setLoading] = useState(true);
