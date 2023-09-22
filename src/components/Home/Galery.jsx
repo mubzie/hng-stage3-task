@@ -2,6 +2,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { DndContext, closestCenter } from "@dnd-kit/core";
+import { getAuth, signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 import {
   arrayMove,
   SortableContext,
@@ -11,6 +13,9 @@ import { Sortable } from "./sortableItems";
 import styles from "./Galery.module.css";
 
 const Gallery = () => {
+  const auth = getAuth();
+  const navigate = useNavigate();
+
   const [gallerys, setGallerys] = useState([]);
   const [originalGallerys, setOriginalGallerys] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -32,6 +37,20 @@ const Gallery = () => {
 
         return arrayMove(gallerys, activeIndex, overIndex);
       });
+    }
+  };
+
+  const handleSignOut = async (e) => {
+    e.preventDefault();
+
+    try {
+      const user = await signOut(auth);
+      console.log(user);
+
+      navigate("/login");
+    } catch (error) {
+      setError(error.message);
+      console.log(error);
     }
   };
 
@@ -108,6 +127,11 @@ const Gallery = () => {
 
   return (
     <>
+      <div className={styles.header}>
+        <button className={styles.signOutBtn} onClick={handleSignOut}>
+          signout
+        </button>
+      </div>
       <div className={styles.searchContainer}>
         <div className={styles.search}>
           <input

@@ -26,6 +26,16 @@ button.searchBtn {
   cursor: pointer;
 }
 
+button.signOutBtn {
+  border: 2px solid #0e73f5;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0e73f5;
+  border-radius: 6px;
+  padding: 8px 24px;
+  cursor: pointer;
+}
+
 input {
   width: 100%;
   border: none;
@@ -119,6 +129,16 @@ img.gallery {
   border-radius: 6px;
   font-size: 14px;
   font-weight: 500;
+}
+
+.header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: flex-end;
+  padding: 8px 24px;
 }
 
 /* media query */
