@@ -1,5 +1,6 @@
 // src/context/AuthContext.js
 import { createContext, useEffect, useState } from "react";
+import { auth } from "../firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 // Create the Auth context
@@ -7,7 +8,7 @@ export const Context = createContext();
 
 // Auth Provider component
 export const AuthContext = ({ children }) => {
-  const auth = getAuth();
+  // const auth = getAuth();
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
 
