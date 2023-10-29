@@ -2,10 +2,9 @@ import React from "react";
 import Gallery from "./components/Home/Galery";
 import Login from "./components/Login/Login";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-// import { AuthContext } from "./components/AuthContext";
 import { Protected } from "./components/ProtectedRoute";
 
-import { AuthProvider } from "./components/AuthContext";
+import { AuthProvider } from "./contexts/AuthContext";
 
 import "./App.module.css";
 

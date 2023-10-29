@@ -3,7 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
-import { useAuth } from "../AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 import { DndContext, closestCenter } from "@dnd-kit/core";

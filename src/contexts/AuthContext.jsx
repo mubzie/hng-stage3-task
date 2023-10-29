@@ -1,17 +1,15 @@
-// src/context/AuthContext.js
-import { useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
+/* eslint-disable react-refresh/only-export-components */
+import { useEffect } from "react";
 import { createContext, useContext } from "react";
 import { useReducer } from "react";
 import { auth } from "../firebase";
-// import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
-// import { useNavigate } from "react-router-dom";
 
 // Create the Auth context
-// export const Context = createContext();
-
 const AuthContext = createContext();
 
+// create the initial state
 const initialState = {
   isLoading: false,
   user: null,
@@ -20,6 +18,7 @@ const initialState = {
   error: "",
 };
 
+// the reducer function that monitor stage change
 const reducer = (state, action) => {
   switch (action.type) {
     case "loading":
@@ -48,12 +47,12 @@ const reducer = (state, action) => {
   }
 };
 
+// AuthProvider component
 const AuthProvider = ({ children }) => {
   const [{ isLoading, email, password, error, user }, dispatch] = useReducer(
     reducer,
     initialState
   );
-  // const navigate = useNavigate();
 
   //handle email change
   const handleEmailInput = (value) => {
@@ -63,42 +62,6 @@ const AuthProvider = ({ children }) => {
   //handle password change
   const handlePasswordInput = (value) => {
     dispatch({ type: "password/input", password: value });
-  };
-
-  //handle user login
-  // const handleUserLogin = async () => {
-  //   dispatch({ type: "loading" });
-
-  //   try {
-  //     const userCredential = await signInWithEmailAndPassword(
-  //       auth,
-  //       email,
-  //       password
-  //     );
-  //     const user = userCredential.user;
-
-  //     if (user) {
-  //       dispatch({ type: "user/loggedin" });
-  //       // navigate("/gallery");
-  //     }
-  //   } catch (error) {
-  //     dispatch({
-  //       type: "error/rejected",
-  //       error: `Error Logging in: ${error.message}`,
-  //     });
-  //   }
-  // };
-
-  //handle user sign out
-  const handleUserSignOut = async () => {
-    // try {
-    //   await signOut(auth);
-    //   dispatch({ type: "user/loggedout" });
-
-    //   // navigate("/login");
-    // } catch (error) {
-    //   console.log(error);
-    // }
   };
 
   //track auth state change to set up protected route
@@ -126,8 +89,6 @@ const AuthProvider = ({ children }) => {
         dispatch,
         handleEmailInput,
         handlePasswordInput,
-        // handleUserLogin,
-        // handleUserSignOut,
       }}
     >
       {children}
@@ -144,33 +105,3 @@ const useAuth = () => {
 };
 
 export { AuthProvider, useAuth };
-
-// Auth Provider component
-// export const AuthContext = ({ children }) => {
-//   // const auth = getAuth();
-//   const [user, setUser] = useState();
-//   const [loading, setLoading] = useState(true);
-
-//   useEffect(() => {
-//     let unsubscribe;
-//     unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-//       setLoading(false);
-//       if (currentUser) setUser(currentUser);
-//       else {
-//         setUser(null);
-//       }
-//     });
-//     return () => {
-//       if (unsubscribe) unsubscribe();
-//     };
-//   }, []);
-
-//   const values = {
-//     user: user,
-//     setUser: setUser,
-//   };
-
-//   return (
-//     <Context.Provider value={values}>{!loading && children}</Context.Provider>
-//   );
-// };
