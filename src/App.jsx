@@ -1,9 +1,11 @@
-import { useState } from "react";
+import React from "react";
 import Gallery from "./components/Home/Galery";
 import Login from "./components/Login/Login";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { AuthContext } from "./components/AuthContext";
+// import { AuthContext } from "./components/AuthContext";
 import { Protected } from "./components/ProtectedRoute";
+
+import { AuthProvider } from "./components/AuthContext";
 
 import "./App.module.css";
 
@@ -31,9 +33,9 @@ function App() {
     },
   ]);
   return (
-    <AuthContext>
+    <AuthProvider>
       <RouterProvider router={router}></RouterProvider>
-    </AuthContext>
+    </AuthProvider>
   );
 }
 

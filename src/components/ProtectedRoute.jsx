@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { Navigate } from "react-router-dom";
-import { Context } from "./AuthContext";
+// import { Context } from "./AuthContext";
+import { useAuth } from "./AuthContext";
 
 export function Protected({ children }) {
-  const { user } = useContext(Context);
+  const { user } = useAuth();
 
   if (!user) {
     return <Navigate to="/login" replace />;

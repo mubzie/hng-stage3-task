@@ -1,28 +1,44 @@
 import React from "react";
-import { useState } from "react";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useAuth } from "../AuthContext";
 import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
 
 const Login = () => {
-  const auth = getAuth();
+  const {
+    isLoading,
+    email,
+    password,
+    error,
+    handleEmailInput,
+    handlePasswordInput,
+    dispatch,
+  } = useAuth();
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
-
-  const handleLogin = async (e) => {
+  //handle user login
+  const handleUserLogin = async (e) => {
     e.preventDefault();
+    dispatch({ type: "loading" });
 
     try {
-      const user = await signInWithEmailAndPassword(auth, email, password);
-      console.log(user);
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
 
-      navigate("/gallery");
+      if (user) {
+        dispatch({ type: "user/loggedin" });
+        navigate("/gallery");
+      }
     } catch (error) {
-      setError(error.message);
-      console.log(error);
+      dispatch({
+        type: "error/rejected",
+        error: `Error Logging in: ${error.message}`,
+      });
     }
   };
 
@@ -34,7 +50,7 @@ const Login = () => {
           <div className={styles.subHeading}>Drag&Drop</div>
         </div>
 
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleUserLogin}>
           <div className={styles.inputContainer}>
             <input
               className={styles.login}
@@ -44,7 +60,7 @@ const Login = () => {
               placeholder="Email address"
               required
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => handleEmailInput(e.target.value)}
             ></input>
             <input
               className={styles.login}
@@ -54,7 +70,7 @@ const Login = () => {
               placeholder="Password"
               required
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => handlePasswordInput(e.target.value)}
             ></input>
           </div>
           <button type="submit" className={styles.formBtn}>
