@@ -1,4 +1,5 @@
 import React from "react";
+import { ClipLoader } from "react-spinners";
 import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useAuth } from "../../contexts/AuthContext";
@@ -71,7 +72,9 @@ const Login = () => {
             />
           </div>
 
-          <Button type="primaryBtn">Log In</Button>
+          <Button type="primaryBtn">
+            {isLoading ? <ClipLoader color="fff" size={15} /> : "Log In"}
+          </Button>
         </form>
 
         {error && <p className={styles.error}>{error}</p>}
