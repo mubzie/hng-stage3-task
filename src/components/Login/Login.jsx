@@ -4,8 +4,8 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
-import AppNav from "../AppNav/AppNav";
 import Button from "../Button/Button";
+import InputField from "../InputField/InputField";
 
 const Login = () => {
   const {
@@ -46,8 +46,6 @@ const Login = () => {
 
   return (
     <>
-      {/* <AppNav /> */}
-
       <div className={styles.container}>
         <div className={styles.headerContainer}>
           <div className={styles.heading}>HNG Stage3 Task</div>
@@ -56,30 +54,28 @@ const Login = () => {
 
         <form onSubmit={handleUserLogin}>
           <div className={styles.inputContainer}>
-            <input
-              className={styles.login}
-              type="text"
-              id="email"
-              name="email"
-              placeholder="Email address"
-              required
+            <InputField
               value={email}
+              placeholder="Email address"
+              type="text"
+              str="email"
               onChange={(e) => handleEmailInput(e.target.value)}
-            ></input>
-            <input
-              className={styles.login}
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Password"
-              required
+              className={styles.inputField}
+            />
+
+            <InputField
               value={password}
+              placeholder="Password"
+              type="password"
+              str="password"
               onChange={(e) => handlePasswordInput(e.target.value)}
-            ></input>
+              className={styles.inputField}
+            />
           </div>
 
           <Button type="primaryBtn">Log In</Button>
         </form>
+
         {error && <p className={styles.error}>{error}</p>}
       </div>
     </>
