@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+.mainContainer {
+  margin: 24px 48px;
+}
+
 .searchContainer {
   max-width: 500px;
   margin: auto;
@@ -13,6 +17,7 @@
   display: flex;
   gap: 8px;
   padding: 4px 8px;
+  margin-top: 24px;
 }
 
 button.searchBtn {
@@ -56,7 +61,9 @@ input::placeholder {
 .cardWrapper {
   display: flex;
   flex-wrap: wrap;
-  margin: 48px 96px;
+  margin-top: 48px;
+  margin-left: 0;
+  margin-right: 0;
   gap: 24px;
   justify-content: center;
 }
@@ -87,48 +94,6 @@ input::placeholder {
 
 .parentContainer {
   display: flex;
-}
-
-.cardContainer {
-  width: 230px;
-  /* height: 250px; */
-  height: max-content;
-  min-height: 221px;
-
-  display: flex;
-  flex-direction: column;
-  padding: 8px;
-  background-color: #fff;
-  border-radius: 8px;
-}
-
-img.gallery {
-  background-size: cover;
-  width: 100%;
-  min-height: 150px;
-
-  border-radius: 6px;
-}
-
-.galleryInfo {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.name {
-  font-size: 16px;
-  font-weight: 500;
-}
-
-.tag {
-  max-width: fit-content;
-  padding: 4px 8px;
-  background-color: beige;
-  color: #217101;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 500;
 }
 
 .header {

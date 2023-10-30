@@ -2,6 +2,7 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import styles from "./Galery.module.css";
+import Card from "../Card/Card";
 
 export function Sortable({ props }) {
   const { attributes, listeners, setNodeRef, transform, transition } =
@@ -25,22 +26,11 @@ export function Sortable({ props }) {
         {...attributes}
         {...listeners}
         style={style}
-
-        // key={props.id}
       >
-        <div className={styles.cardContainer}>
-          <div className={styles.card}>
-            <img
-              className={styles.gallery}
-              style={{ backgroundImage: `url(${props.image})` }}
-            ></img>
-            <div className={styles.galleryInfo}>
-              <div className={styles.name}>{props.name}</div>
-              <div className={styles.tag}>{props.tag}</div>
-            </div>
-          </div>
-        </div>
+        <Card props={props} />
       </div>
     </div>
   );
 }
+
+export default Sortable;

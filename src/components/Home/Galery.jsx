@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import { useState, useEffect } from "react";
-import { auth } from "../../firebase";
-import { signOut } from "firebase/auth";
-import { useAuth } from "../../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Sortable } from "./sortableItems";
+import AppNav from "../AppNav/AppNav";
+import styles from "./Galery.module.css";
 
 import { DndContext, closestCenter } from "@dnd-kit/core";
 import {
@@ -12,13 +11,8 @@ import {
   SortableContext,
   rectSortingStrategy,
 } from "@dnd-kit/sortable";
-import { Sortable } from "./sortableItems";
-import styles from "./Galery.module.css";
 
 const Gallery = () => {
-  const { dispatch } = useAuth();
-  const navigate = useNavigate();
-
   const [gallerys, setGallerys] = useState([]);
   const [originalGallerys, setOriginalGallerys] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -40,18 +34,6 @@ const Gallery = () => {
 
         return arrayMove(gallerys, activeIndex, overIndex);
       });
-    }
-  };
-
-  const handleUserSignOut = async (e) => {
-    e.preventDefault();
-
-    try {
-      await signOut(auth);
-      dispatch({ type: "user/loggedout" });
-      navigate("/login");
-    } catch (error) {
-      console.log(error);
     }
   };
 
@@ -78,7 +60,7 @@ const Gallery = () => {
     const countryCount = [];
 
     const generateRandom = () => {
-      for (let i = 0; i < 8; i++) {
+      for (let i = 0; i < 10; i++) {
         countryCount.push(i);
       }
     };
@@ -127,12 +109,9 @@ const Gallery = () => {
   if (loading) return <div className={styles.loadingState}>Loading...</div>;
 
   return (
-    <>
-      <div className={styles.header}>
-        <button className={styles.signOutBtn} onClick={handleUserSignOut}>
-          signout
-        </button>
-      </div>
+    <div className={styles.mainContainer}>
+      <AppNav />
+
       <div className={styles.searchContainer}>
         <div className={styles.search}>
           <input
@@ -154,7 +133,7 @@ const Gallery = () => {
           </SortableContext>
         </div>
       </DndContext>
-    </>
+    </div>
   );
 };
 

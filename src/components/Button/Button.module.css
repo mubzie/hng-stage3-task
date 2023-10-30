@@ -1,0 +1,26 @@
+button {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 24px;
+  border-radius: 6px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.primaryBtn {
+  background-color: #0e73f5;
+  color: #fff;
+}
+
+.secondaryBtn {
+  background-color: #fff;
+  border: 2px solid #0e73f5;
+  color: #0e73f5;
+}

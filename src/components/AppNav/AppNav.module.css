@@ -1,0 +1,10 @@
+.mainContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #4f4f4f;
+}
