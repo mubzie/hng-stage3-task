@@ -9,6 +9,17 @@
   border-radius: 8px;
 }
 
+img {
+  height: 100px;
+  width: 100%;
+}
+
+img.gallery {
+  background-size: cover;
+  min-height: 120px;
+  border-radius: 6px;
+}
+
 .galleryInfo {
   display: flex;
   flex-direction: column;
@@ -28,15 +39,4 @@
   border-radius: 6px;
   font-size: 14px;
   font-weight: 500;
-}
-
-img {
-  height: 100px;
-  width: 100%;
-}
-
-img.gallery {
-  background-size: cover;
-  min-height: 120px;
-  border-radius: 6px;
 }

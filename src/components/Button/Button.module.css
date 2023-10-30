@@ -1,20 +1,3 @@
-button {
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  height: 100%;
-  padding: 12px 24px;
-  border-radius: 6px;
-  border: none;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
 .primaryBtn {
   background-color: #0e73f5;
   color: #fff;
