@@ -5,7 +5,8 @@ button {
   justify-content: center;
   gap: 8px;
   width: 100%;
-  padding: 8px 24px;
+  height: 100%;
+  padding: 12px 24px;
   border-radius: 6px;
   border: none;
   font-size: 1rem;
@@ -23,4 +24,5 @@ button {
   background-color: #fff;
   border: 2px solid #0e73f5;
   color: #0e73f5;
+  padding: 8px 24px;
 }

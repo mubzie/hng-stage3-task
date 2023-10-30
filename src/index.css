@@ -12,3 +12,9 @@ body {
   line-height: 1.5;
   font-weight: 400;
 }
+
+input::placeholder {
+  font-size: 16px;
+  font-weight: 400;
+  color: #bbbbbb;
+}

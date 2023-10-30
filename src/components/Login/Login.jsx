@@ -3,9 +3,9 @@ import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import styles from "./Login.module.css";
 import Button from "../Button/Button";
 import InputField from "../InputField/InputField";
+import styles from "./Login.module.css";
 
 const Login = () => {
   const {
@@ -60,7 +60,6 @@ const Login = () => {
               type="text"
               str="email"
               onChange={(e) => handleEmailInput(e.target.value)}
-              className={styles.inputField}
             />
 
             <InputField
@@ -69,7 +68,6 @@ const Login = () => {
               type="password"
               str="password"
               onChange={(e) => handlePasswordInput(e.target.value)}
-              className={styles.inputField}
             />
           </div>
 

@@ -3,6 +3,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Sortable } from "./sortableItems";
 import AppNav from "../AppNav/AppNav";
+import InputField from "../InputField/InputField";
+import Button from "../Button/Button";
 import styles from "./Gallery.module.css";
 
 import { DndContext, closestCenter } from "@dnd-kit/core";
@@ -114,13 +116,13 @@ const Gallery = () => {
 
       <div className={styles.searchContainer}>
         <div className={styles.search}>
-          <input
+          <InputField
             type="text"
-            placeholder="search country by tag"
+            placeholder="filter country by tag"
             value={searchQuery}
             onChange={handleSearchChange}
-          ></input>
-          <button className={styles.searchBtn}>search</button>
+          />
+          <Button type="primaryBtn">search</Button>
         </div>
       </div>
 

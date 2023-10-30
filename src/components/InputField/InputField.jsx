@@ -1,4 +1,6 @@
-const InputField = ({ value, onChange, placeholder, str, type, className }) => {
+import styles from "./InputField.module.css";
+
+const InputField = ({ value, onChange, placeholder, str, type }) => {
   return (
     <input
       value={value}
@@ -8,7 +10,7 @@ const InputField = ({ value, onChange, placeholder, str, type, className }) => {
       id={str}
       name={str}
       autoComplete={str}
-      className={className}
+      className={styles.inputField}
       required
     ></input>
   );
