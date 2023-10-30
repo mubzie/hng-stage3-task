@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import styles from "./Galery.module.css";
+import styles from "./Gallery.module.css";
 import Card from "../Card/Card";
 
 export function Sortable({ props }) {

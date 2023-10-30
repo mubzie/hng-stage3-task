@@ -3,7 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Sortable } from "./sortableItems";
 import AppNav from "../AppNav/AppNav";
-import styles from "./Galery.module.css";
+import styles from "./Gallery.module.css";
 
 import { DndContext, closestCenter } from "@dnd-kit/core";
 import {

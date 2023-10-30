@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
-import Gallery from "../components/Home/Galery";
+import Gallery from "../components/Gallery/Gallery";
 import Login from "../components/Login/Login";
 import { createBrowserRouter } from "react-router-dom";
 import { Protected } from "./ProtectedRoute";
