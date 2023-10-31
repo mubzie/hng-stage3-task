@@ -27,7 +27,7 @@ img.gallery {
 }
 
 .name {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 500;
 }
 
@@ -37,6 +37,6 @@ img.gallery {
   background-color: beige;
   color: #217101;
   border-radius: 6px;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 500;
 }
