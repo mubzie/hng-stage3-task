@@ -9,3 +9,12 @@
   color: #0e73f5;
   padding: 8px 24px;
 }
+
+.active {
+  pointer-events: all;
+}
+
+.disable {
+  pointer-events: none;
+  background-color: #67a9ff;
+}

@@ -12,10 +12,10 @@ const AuthContext = createContext();
 // create the initial state
 const initialState = {
   isLoading: false,
+  error: null,
   user: null,
   email: "",
   password: "",
-  error: "",
 };
 
 // the reducer function that monitor stage change
@@ -44,6 +44,9 @@ const reducer = (state, action) => {
 
     case "error/rejected":
       return { ...state, error: action.error, isLoading: false };
+
+    case "error/clear":
+      return { ...state, error: false };
   }
 };
 

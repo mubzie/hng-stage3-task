@@ -6,7 +6,7 @@
   max-width: 500px;
 
   margin: auto;
-  margin-top: 112px;
+  margin-top: 148px;
 }
 
 .headerContainer {
@@ -44,7 +44,14 @@ form {
 }
 
 .error {
+  background-color: #fff;
+  padding: 8px;
+  border-radius: 6px;
   color: #c50000;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  max-width: 460px;
 }
 
 /* media query */
@@ -59,5 +66,9 @@ form {
 
   .heading {
     font-size: 32px;
+  }
+
+  .error {
+    max-width: 300px;
   }
 }

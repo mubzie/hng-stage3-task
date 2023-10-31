@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { ClipLoader } from "react-spinners";
 import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -20,6 +20,15 @@ const Login = () => {
   } = useAuth();
   const navigate = useNavigate();
 
+  // handle error message display
+  const handleShowError = () => {
+    const timer = setTimeout(() => {
+      dispatch({ type: "error/clear" });
+    }, 4000);
+
+    return () => clearTimeout(timer);
+  };
+
   //handle user login
   const handleUserLogin = async (e) => {
     e.preventDefault();
@@ -38,11 +47,17 @@ const Login = () => {
         navigate("/gallery");
       }
     } catch (error) {
+      const errorMessage = error.message;
+      const removeParts = errorMessage.split("(auth/");
+      const errorCode = removeParts[1].split(")")[0].replace(/-/g, " ");
+
       dispatch({
         type: "error/rejected",
-        error: `Error Logging in: ${error.message}`,
+        error: `Error Logging in: ${errorCode}`,
       });
     }
+
+    handleShowError();
   };
 
   return (
